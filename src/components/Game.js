@@ -1,8 +1,9 @@
 import React from 'react';
+import Scoreboard from './Scoreboard';
 
 const Game = (props) => {
   return (
-    <p>Game works!</p>
+    <Scoreboard />
   );
 }
 

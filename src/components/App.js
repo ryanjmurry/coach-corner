@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       twoPlayerGame: false,
-      menuVisible: true,
+      menuVisible: false,
       coach1: '',
       coach2: ''
     };
