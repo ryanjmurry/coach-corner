@@ -15,12 +15,10 @@ class Game extends React.Component {
         strategy: "neutral",
         players: this.createTeamPlayers()
       },
-      timeRemaining: 12,
-      quarter: 1,
       awayTeam: {
         timeOutsRemaining: 2,
         totalPoints: 0,
-        strategy: "whatever",
+        strategy: "neutral",
         players: this.createTeamPlayers()
       }
     }
