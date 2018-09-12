@@ -1,20 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import Player from './Player';
 
 //styles start
 const benchPlayersContainer = {
   border: '1px solid black',
   padding: '15px',
-  borderRadius: '15px'
+  borderRadius: '15px',
+  backgroundColor: 'yellow'
 }
 //styles end
 
 const BenchPlayers = (props) => {
   return (
     <div style={benchPlayersContainer}>
-      <p>Bench Players Work</p>
+      Bench Players
+      <Player />
+      <Player />
+      <Player />
+      <Player />
     </div>
-  )
+  );
 }
 
-export default BenchPlayers
+export default BenchPlayers;

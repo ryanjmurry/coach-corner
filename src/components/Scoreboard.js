@@ -5,7 +5,8 @@ import {Grid} from 'semantic-ui-react';
 const scoreboardContainer = {
   border: '1px solid black',
   borderRadius: '15px',
-  padding: "15px"
+  padding: "15px",
+  backgroundColor: 'lightgreen'
 }
 //styles end
 const ScoreBoard = (props) => {

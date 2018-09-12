@@ -7,7 +7,8 @@ import CoachPanel from './CoachPanel';
 const playerFieldContainer = {
   border: '1px solid black',
   padding: '15px',
-  borderRadius: '15px'
+  borderRadius: '15px',
+  backgroundColor: 'goldenrod'
 }
 //styles end
 
