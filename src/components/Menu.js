@@ -31,13 +31,9 @@ const Menu = (props) => {
   }
 
   const handleNewGameSubmission = (e) => {
-      let coach2Name = e.target.coach2 === undefined ? '' : e.target.coach2.value;
-      let newGame = {
-      // if(e.target.coach2.value !== undefined) return coach2 = e.target.coach2.value;
-      coach1: e.target.coach1.value,
-      coach2: coach2Name
-    }
-    console.log(newGame)
+    let coach1Name = e.target.coach1.value;
+    let coach2Name = e.target.coach2 === undefined ? 'Phil Jackson (CPU)' : e.target.coach2.value;
+    props.onStartGameClick(coach1Name, coach2Name);
   }
 
   let currentView = null;
@@ -67,7 +63,8 @@ const Menu = (props) => {
 Menu.propTypes = {
   twoPlayerGame: PropTypes.bool.isRequired,
   onTwoPlayerClick: PropTypes.func.isRequired,
-  onOnePlayerClick: PropTypes.func.isRequired
+  onOnePlayerClick: PropTypes.func.isRequired,
+  onStartGameClick: PropTypes.func.isRequired
 }
 
-export default Menu
+export default Menu;
