@@ -1,10 +1,16 @@
 import React from 'react';
 import {Grid} from 'semantic-ui-react';
 
+//styles start
+const scoreboardContainer = {
+  border: '1px solid black',
+  borderRadius: '15px',
+  padding: "15px"
+}
+//styles end
 const ScoreBoard = (props) => {
-
   return (
-    <div>
+    <div style={scoreboardContainer}>
       <Grid textAlign='center' columns={5} widths='equal'>
         <Grid.Row>
           <Grid.Column>
