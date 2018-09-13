@@ -14,18 +14,17 @@ const playerFieldContainerBox = {
 //styles end
 
 const PlayerFieldContainer = (props) => {
-  console.log(props.homeTeam);
-  console.log(props.awayTeam);
   return (
     <div style={playerFieldContainerBox}>
+      PlayerFieldContainer
       <Grid columns={2} widths='equal'>
         <Grid.Column>
-          <PlayerField activePlayers={props.homeTeam.active} benchPlayers={props.homeTeam.bench}/>
+          <PlayerField players={props.homeTeam.players}/>
           <CoachOptionField />
         </Grid.Column>
 
         <Grid.Column>
-          <PlayerField activePlayers={props.awayTeam.active} benchPlayers={props.awayTeam.bench}/>
+          <PlayerField players={props.awayTeam.players}/>
           <CoachOptionField />
         </Grid.Column>
       </Grid>

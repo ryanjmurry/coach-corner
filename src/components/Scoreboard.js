@@ -10,9 +10,7 @@ const scoreboardContainer = {
 }
 //styles end
 const ScoreBoard = (props) => {
-  console.log(props.gameInfo);
-
-  const {timeRemaining, quarter, homePoints, awayPoints} = props.gameInfo;
+const {timeRemaining, quarter, homePoints, awayPoints} = props.gameInfo;
 
   return (
     <div style={scoreboardContainer}>
