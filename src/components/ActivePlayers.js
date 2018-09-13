@@ -15,8 +15,11 @@ const ActivePlayers = (props) => {
   return (
     <div style={activePlayersContainer}>
       Active Players
-      {props.players.map((player, index) =>
-        <Player player={player} inTimeout={props.inTimeout} key={index} />
+      {props.players.map((player) =>
+        <Player
+          player={player}
+          inTimeout={props.inTimeout}
+          key={props.id} />
       )}
     </div>
   );

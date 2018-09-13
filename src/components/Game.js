@@ -2,6 +2,7 @@ import React from 'react';
 import Scoreboard from './Scoreboard';
 import PlayerFieldContainer from './PlayerFieldContainer';
 import BoxScore from './BoxScore';
+import { v4 } from 'uuid';
 
 class Game extends React.Component {
   constructor(props) {
@@ -382,6 +383,7 @@ class Game extends React.Component {
         players: this.createTeamPlayers()
       }
     }
+    this.handleSubPlayerIn = this.handleSubPlayerIn.bind(this);
   }
 
   //creates random player name
@@ -408,11 +410,40 @@ class Game extends React.Component {
         endurance: this.randomNumber(10),
         stamina: 10,
         points: 0,
-        active: false
+        active: false,
+        id: v4()
       }
       newTeamList.push(newPlayer);
     }
     return newTeamList;
+  }
+
+  handleSubPlayerIn(id) {
+    console.log(id)
+    // let awayTeamPlayers = {...this.state.awayTeam};
+    // console.log(awayTeamPlayers);
+    // let homeTeamPlayers = {...this.state.homeTeam};
+    // console.log(awayTeamPlayers);
+    // console.log(Object.keys(awayTeamPlayers));
+
+    // awayTeamPlayers.forEach((player) =>{
+    //   if(player.id === id) {
+    //     console.log(player);
+    //     player.active = true;
+    //   }
+    // });
+
+    // for (var property1 in object1) {
+    //   string1 = string1 + object1[property1];
+    // }
+
+    // awayTeam.players.forEach((player) =>{
+    //   if(player.id === id) {
+    //     player.active = true;
+    //   }
+    // });
+    // this.setState({awayTeam})
+    // this.setState({homeTeamPlayers})
   }
 
   // code to change state
@@ -436,7 +467,7 @@ class Game extends React.Component {
     return (
       <div style={gameContainer}>
         <Scoreboard gameInfo={this.state.gameInfo} inTimeout={this.state.inTimeout}/>
-        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout}/>
+        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout} onSubPlayerIn={this.handleSubPlayerIn}/>
         <BoxScore />
       </div>
     )

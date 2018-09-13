@@ -11,18 +11,24 @@ const playerContainer = {
 }
 //styles end
 
+
+
 const Player = (props) => {
-  const { name, offense, defense, endurance, points, stamina, active} = props.player;
+  const { name, offense, defense, endurance, points, stamina, active, id} = props.player;
   const inTimeout = props.inTimeout;
 
-  console.log(name, offense, defense, endurance, points, stamina, active, inTimeout)
+  const onSubPlayerIn = () => {
+    props.onSubPlayerIn(id);
+  }
+
+
 
   let currentButton = null;
 
   if(inTimeout && active) {
     currentButton = <Button size='mini'>Move To Bench</Button>
   } else if (inTimeout && !active) {
-    currentButton = <Button size='mini'>Move To Active</Button>
+    currentButton = <Button onClick={onSubPlayerIn} size='mini'>Move To Active</Button>
   } else {
     currentButton = null;
   }

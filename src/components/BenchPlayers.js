@@ -15,11 +15,12 @@ const BenchPlayers = (props) => {
   return (
     <div style={benchPlayersContainer}>
       Bench Players
-      {props.players.map((player, index) =>
+      {props.players.map((player) =>
         <Player
           player={player}
           inTimeout={props.inTimeout}
-          key={index} />
+          onSubPlayerIn={props.onSubPlayerIn}
+          key={player.id} />
       )}
     </div>
   );
