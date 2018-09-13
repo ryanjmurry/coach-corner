@@ -8,7 +8,6 @@ class Game extends React.Component {
     super(props);
     this.nameData = {
       "firstName": [
-        "",
         "An",
         "Alfr",
         "Alvi",
@@ -131,7 +130,6 @@ class Game extends React.Component {
         "Waltheof"
       ],
       "lastNamePrefix": [
-        "",
         "Aesir",
         "Axe",
         "Battle",
@@ -256,7 +254,6 @@ class Game extends React.Component {
         "Wyvern"
       ],
       "lastNameSuffix": [
-        "",
         "admirer",
         "arm",
         "axe",
@@ -373,22 +370,24 @@ class Game extends React.Component {
         timeOutsRemaining: 2,
         totalPoints: 0,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        active: this.createTeamPlayers(),
+        bench: this.createTeamPlayers()
       },
       awayTeam: {
         timeOutsRemaining: 2,
         totalPoints: 0,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        active: this.createTeamPlayers(),
+        bench: this.createTeamPlayers()
       }
     }
   }
 
   //creates random player name
   createPlayer() {
-    let first = this.randomNumber(this.nameData.firstName.length);
-    let lastPre = this.randomNumber(this.nameData.lastNamePrefix.length);
-    let lastSuff = this.randomNumber(this.nameData.lastNameSuffix.length);
+    let first = this.randomNumber(this.nameData.firstName.length - 1);
+    let lastPre = this.randomNumber(this.nameData.lastNamePrefix.length - 1);
+    let lastSuff = this.randomNumber(this.nameData.lastNameSuffix.length - 1);
     return this.nameData.firstName[first] + " " + this.nameData.lastNamePrefix[lastPre] + this.nameData.lastNameSuffix[lastSuff];
   }
 
@@ -415,6 +414,13 @@ class Game extends React.Component {
     return newTeamList;
   }
 
+  // handleNewClick() {
+  //     let awayTeam = {...this.state.awayTeam}
+  //     console.log(awayTeam);
+  //     awayTeam.timeOutsRemaining--;
+  //     this.setState({awayTeam})
+  // }
+
   //hard coded names
 
   render () {
@@ -430,7 +436,7 @@ class Game extends React.Component {
     return (
       <div style={gameContainer}>
         <Scoreboard />
-        <PlayerFieldContainer />
+        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam}/>
         <BoxScore />
       </div>
     )
