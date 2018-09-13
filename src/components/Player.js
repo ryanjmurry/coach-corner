@@ -11,10 +11,11 @@ const playerContainer = {
 //styles end
 
 const Player = (props) => {
-  console.log(props.player.name)
+  const { name, offense, defense, endurance, points, stamina} = props.player;
+  console.log(name, offense, defense, endurance, points, stamina)
   return (
     <div style={playerContainer}>
-      <p>{props.player.name}, O: {props.player.offense}, D: {props.player.defense}, E:{props.player.endurance}, Pts:{props.player.points}, Stam:{props.player.stamina}</p>
+      <p>{name}, O: {offense}, D: {defense}, E:{endurance}, Pts:{points}, Stam:{stamina}</p>
     </div>
   );
 }
