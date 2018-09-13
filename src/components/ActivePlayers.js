@@ -16,14 +16,15 @@ const ActivePlayers = (props) => {
     <div style={activePlayersContainer}>
       Active Players
       {props.players.map((player, index) =>
-        <Player player={player} key={index} />
+        <Player player={player} inTimeout={props.inTimeout} key={index} />
       )}
     </div>
   );
 }
 
 ActivePlayers.propTypes = {
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  inTimeout: PropTypes.bool.isRequired
 }
 
 export default ActivePlayers;
