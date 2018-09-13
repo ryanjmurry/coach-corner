@@ -364,6 +364,7 @@ class Game extends React.Component {
       ]
     }
     this.state = {
+      inTimeout: true,
       gameInfo: {
         timeRemaining: 720, //seconds in 12 mins
         quarter: 1,
@@ -373,14 +374,12 @@ class Game extends React.Component {
       homeTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        active: this.createTeamPlayers(true),
-        bench: this.createTeamPlayers(false)
+        players: this.createTeamPlayers()
       },
       awayTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        active: this.createTeamPlayers(true),
-        bench: this.createTeamPlayers(false)
+        players: this.createTeamPlayers()
       }
     }
   }
@@ -399,9 +398,9 @@ class Game extends React.Component {
   }
 
   //generates 10 random players
-  createTeamPlayers(isActive) {
+  createTeamPlayers() {
     let newTeamList = []
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       let newPlayer = {
         name: this.createPlayer(),
         offense: this.randomNumber(10),
@@ -409,7 +408,7 @@ class Game extends React.Component {
         endurance: this.randomNumber(10),
         stamina: 10,
         points: 0,
-        active: isActive
+        active: false
       }
       newTeamList.push(newPlayer);
     }
@@ -436,8 +435,8 @@ class Game extends React.Component {
 
     return (
       <div style={gameContainer}>
-        <Scoreboard gameInfo={this.state.gameInfo}/>
-        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam}/>
+        <Scoreboard gameInfo={this.state.gameInfo} inTimeout={this.state.inTimeout}/>
+        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout}/>
         <BoxScore />
       </div>
     )
