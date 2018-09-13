@@ -10,24 +10,20 @@ const scoreboardContainer = {
 }
 //styles end
 const ScoreBoard = (props) => {
+  console.log(props.gameInfo);
+
+  const {timeRemaining, quarter, homePoints, awayPoints} = props.gameInfo;
+
   return (
     <div style={scoreboardContainer}>
-      <Grid textAlign='center' columns={5} widths='equal'>
+      <Grid textAlign='center' columns={3} widths='equal'>
         <Grid.Row>
           <Grid.Column>
             <p>Home</p>
           </Grid.Column>
 
           <Grid.Column>
-            <p>Timeouts</p>
-          </Grid.Column>
-
-          <Grid.Column>
-            <p>Quarter</p>
-          </Grid.Column>
-
-          <Grid.Column>
-            <p>Timeouts</p>
+            <p>Q: {quarter}</p>
           </Grid.Column>
 
           <Grid.Column>
@@ -37,23 +33,15 @@ const ScoreBoard = (props) => {
 
         <Grid.Row>
           <Grid.Column>
-            <p>Points</p>
+            <p>{homePoints}</p>
           </Grid.Column>
 
           <Grid.Column>
-            <p>Timeouts Remaining</p>
+            <p>{timeRemaining}</p>
           </Grid.Column>
 
           <Grid.Column>
-            <p>Time Remaining</p>
-          </Grid.Column>
-
-          <Grid.Column>
-            <p>Timeouts Remaining</p>
-          </Grid.Column>
-
-          <Grid.Column>
-            <p>Points</p>
+            <p>{awayPoints}</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
