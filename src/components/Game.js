@@ -370,15 +370,15 @@ class Game extends React.Component {
         timeOutsRemaining: 2,
         totalPoints: 0,
         strategy: "neutral",
-        active: this.createTeamPlayers(),
-        bench: this.createTeamPlayers()
+        active: this.createTeamPlayers(true),
+        bench: this.createTeamPlayers(false)
       },
       awayTeam: {
         timeOutsRemaining: 2,
         totalPoints: 0,
         strategy: "neutral",
-        active: this.createTeamPlayers(),
-        bench: this.createTeamPlayers()
+        active: this.createTeamPlayers(true),
+        bench: this.createTeamPlayers(false)
       }
     }
   }
@@ -397,9 +397,9 @@ class Game extends React.Component {
   }
 
   //generates 10 random players
-  createTeamPlayers() {
+  createTeamPlayers(isActive) {
     let newTeamList = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       let newPlayer = {
         name: this.createPlayer(),
         offense: this.randomNumber(10),
@@ -407,7 +407,7 @@ class Game extends React.Component {
         endurance: this.randomNumber(10),
         stamina: 10,
         points: 0,
-        active: false
+        active: isActive
       }
       newTeamList.push(newPlayer);
     }
