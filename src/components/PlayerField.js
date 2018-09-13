@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ActivePlayers from './ActivePlayers';
 import BenchPlayers from './BenchPlayers';
 import CoachPanel from './CoachPanel';
@@ -17,10 +18,15 @@ const PlayerField = (props) => {
     <div style={playerFieldContainer}>
       PlayerField
       <CoachPanel />
-      <ActivePlayers />
-      <BenchPlayers />
+      <ActivePlayers activePlayers={props.activePlayers}/>
+      <BenchPlayers benchPlayers={props.benchPlayers}/>
     </div>
   );
+}
+
+PlayerField.propTypes = {
+  activePlayers: PropTypes.array.isRequired,
+  benchPlayers: PropTypes.array.isRequired
 }
 
 export default PlayerField;

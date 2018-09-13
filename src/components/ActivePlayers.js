@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Player from './Player';
 
 //styles start
@@ -13,14 +14,15 @@ const activePlayersContainer = {
 const ActivePlayers = (props) => {
   return (
     <div style={activePlayersContainer}>
-      Active Player
-      <Player />
-      <Player />
-      <Player />
-      <Player />
-      <Player />
+      {props.activePlayers.map((player, index) =>
+        <Player player={player} key={index} />
+      )}
     </div>
   );
+}
+
+ActivePlayers.propTypes = {
+  activePlayers: PropTypes.array.isRequired
 }
 
 export default ActivePlayers;

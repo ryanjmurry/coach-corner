@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Player from './Player';
 
 //styles start
@@ -11,15 +12,18 @@ const benchPlayersContainer = {
 //styles end
 
 const BenchPlayers = (props) => {
+  console.log(props.benchPlayers)
   return (
     <div style={benchPlayersContainer}>
-      Bench Players
-      <Player />
-      <Player />
-      <Player />
-      <Player />
+      {props.benchPlayers.map((player, index) =>
+        <Player player={player} key={index} />
+      )}
     </div>
   );
+}
+
+BenchPlayers.propTypes = {
+  benchPlayers: PropTypes.array.isRequired
 }
 
 export default BenchPlayers;
