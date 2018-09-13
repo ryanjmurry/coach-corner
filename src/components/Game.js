@@ -364,18 +364,20 @@ class Game extends React.Component {
       ]
     }
     this.state = {
-      timeRemaining: 12,
-      quarter: 1,
+      gameInfo: {
+        timeRemaining: 720, //seconds in 12 mins
+        quarter: 1,
+        homePoints: 0,
+        awayPoints: 0,
+      },
       homeTeam: {
         timeOutsRemaining: 2,
-        totalPoints: 0,
         strategy: "neutral",
         active: this.createTeamPlayers(true),
         bench: this.createTeamPlayers(false)
       },
       awayTeam: {
         timeOutsRemaining: 2,
-        totalPoints: 0,
         strategy: "neutral",
         active: this.createTeamPlayers(true),
         bench: this.createTeamPlayers(false)
@@ -414,14 +416,13 @@ class Game extends React.Component {
     return newTeamList;
   }
 
+  // code to change state
   // handleNewClick() {
   //     let awayTeam = {...this.state.awayTeam}
   //     console.log(awayTeam);
   //     awayTeam.timeOutsRemaining--;
   //     this.setState({awayTeam})
   // }
-
-  //hard coded names
 
   render () {
     //styles start
@@ -435,7 +436,7 @@ class Game extends React.Component {
 
     return (
       <div style={gameContainer}>
-        <Scoreboard />
+        <Scoreboard gameInfo={this.state.gameInfo}/>
         <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam}/>
         <BoxScore />
       </div>
