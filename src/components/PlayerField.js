@@ -14,19 +14,30 @@ const playerFieldContainer = {
 //styles end
 
 const PlayerField = (props) => {
+
+  let benchPlayers = [];
+  let activePlayers = [];
+
+  props.players.forEach((player) => {
+    if(player.active) {
+      activePlayers.push(player);
+    } else {
+      benchPlayers.push(player);
+    }
+  });
+
   return (
     <div style={playerFieldContainer}>
       PlayerField
       <CoachPanel />
-      <ActivePlayers activePlayers={props.activePlayers}/>
-      <BenchPlayers benchPlayers={props.benchPlayers}/>
+      <ActivePlayers players={activePlayers} />
+      <BenchPlayers players={benchPlayers} />
     </div>
   );
 }
 
 PlayerField.propTypes = {
-  activePlayers: PropTypes.array.isRequired,
-  benchPlayers: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
 }
 
 export default PlayerField;
