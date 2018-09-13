@@ -16,14 +16,18 @@ const BenchPlayers = (props) => {
     <div style={benchPlayersContainer}>
       Bench Players
       {props.players.map((player, index) =>
-        <Player player= {player} key={index} />
+        <Player
+          player={player}
+          inTimeout={props.inTimeout}
+          key={index} />
       )}
     </div>
   );
 }
 
 BenchPlayers.propTypes = {
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  inTimeout: PropTypes.bool.isRequired
 }
 
 export default BenchPlayers;
