@@ -12,18 +12,18 @@ const benchPlayersContainer = {
 //styles end
 
 const BenchPlayers = (props) => {
-  console.log(props.benchPlayers)
   return (
     <div style={benchPlayersContainer}>
-      {props.benchPlayers.map((player, index) =>
-        <Player player={player} key={index} />
+      Bench Players
+      {props.players.map((player, index) =>
+        <Player player= {player} key={index} />
       )}
     </div>
   );
 }
 
 BenchPlayers.propTypes = {
-  benchPlayers: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired
 }
 
 export default BenchPlayers;
