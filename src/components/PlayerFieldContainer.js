@@ -19,12 +19,12 @@ const PlayerFieldContainer = (props) => {
       PlayerFieldContainer
       <Grid columns={2} widths='equal'>
         <Grid.Column>
-          <PlayerField players={props.homeTeam.players}/>
+          <PlayerField players={props.homeTeam.players} inTimeout={props.inTimeout}/>
           <CoachOptionField />
         </Grid.Column>
 
         <Grid.Column>
-          <PlayerField players={props.awayTeam.players}/>
+          <PlayerField players={props.awayTeam.players} inTimeout={props.inTimeout}/>
           <CoachOptionField />
         </Grid.Column>
       </Grid>
@@ -34,7 +34,8 @@ const PlayerFieldContainer = (props) => {
 
 PlayerFieldContainer.propTypes = {
   homeTeam: PropTypes.object.isRequired,
-  awayTeam: PropTypes.object.isRequired
+  awayTeam: PropTypes.object.isRequired,
+  inTimeout: PropTypes.bool.isRequired
 }
 
 export default PlayerFieldContainer;
