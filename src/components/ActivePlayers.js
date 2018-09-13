@@ -14,7 +14,8 @@ const activePlayersContainer = {
 const ActivePlayers = (props) => {
   return (
     <div style={activePlayersContainer}>
-      {props.activePlayers.map((player, index) =>
+      Active Players
+      {props.players.map((player, index) =>
         <Player player={player} key={index} />
       )}
     </div>
@@ -22,7 +23,7 @@ const ActivePlayers = (props) => {
 }
 
 ActivePlayers.propTypes = {
-  activePlayers: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired
 }
 
 export default ActivePlayers;
