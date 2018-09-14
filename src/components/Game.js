@@ -383,7 +383,7 @@ class Game extends React.Component {
         players: this.createTeamPlayers()
       }
     }
-    this.handleSubPlayerIn = this.handleSubPlayerIn.bind(this);
+    this.handleSubPlayer = this.handleSubPlayer.bind(this);
   }
 
   //creates random player name
@@ -418,37 +418,25 @@ class Game extends React.Component {
     return newTeamList;
   }
 
-  handleSubPlayerIn(id) {
+  handleSubPlayer(id) {
     console.log(id)
     let awayTeamPlayers = {...this.state.awayTeam.players};
     console.log(awayTeamPlayers);
     let homeTeamPlayers = {...this.state.homeTeam.players};
     console.log(awayTeamPlayers);
-    // console.log(Object.keys(awayTeamPlayers));
     for (let i = 0; i < 10; i++) {
       if(awayTeamPlayers[i].id === id) {
-        awayTeamPlayers[i].active = true;
+        awayTeamPlayers[i].active = !awayTeamPlayers[i].active;
     }
   }
 
-    // awayTeamPlayers.forEach((player) =>{
-    //   if(player.id === id) {
-    //     console.log(player);
-    //     player.active = true;
-    //   }
-    // });
-
-    // for (var property1 in object1) {
-    //   string1 = string1 + object1[property1];
-    // }
-
-    // awayTeam.players.forEach((player) =>{
-    //   if(player.id === id) {
-    //     player.active = true;
-    //   }
-    // });
+    for (let i = 0; i < 10; i++) {
+      if(homeTeamPlayers[i].id === id) {
+        homeTeamPlayers[i].active = !homeTeamPlayers[i].active;
+    }
+  }
     this.setState({awayTeamPlayers})
-    // this.setState({homeTeamPlayers})
+    this.setState({homeTeamPlayers})
   }
 
   // code to change state
@@ -472,7 +460,7 @@ class Game extends React.Component {
     return (
       <div style={gameContainer}>
         <Scoreboard gameInfo={this.state.gameInfo} inTimeout={this.state.inTimeout}/>
-        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout} onSubPlayerIn={this.handleSubPlayerIn}/>
+        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout} onSubPlayer={this.handleSubPlayer}/>
         <BoxScore />
       </div>
     )
