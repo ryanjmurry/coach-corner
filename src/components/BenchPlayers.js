@@ -19,7 +19,7 @@ const BenchPlayers = (props) => {
         <Player
           player={player}
           inTimeout={props.inTimeout}
-          onSubPlayerIn={props.onSubPlayerIn}
+          onSubPlayer={props.onSubPlayer}
           key={player.id} />
       )}
     </div>
@@ -28,7 +28,8 @@ const BenchPlayers = (props) => {
 
 BenchPlayers.propTypes = {
   players: PropTypes.array.isRequired,
-  inTimeout: PropTypes.bool.isRequired
+  inTimeout: PropTypes.bool.isRequired,
+  onSubPlayer: PropTypes.func
 }
 
 export default BenchPlayers;
