@@ -420,11 +420,16 @@ class Game extends React.Component {
 
   handleSubPlayerIn(id) {
     console.log(id)
-    // let awayTeamPlayers = {...this.state.awayTeam};
-    // console.log(awayTeamPlayers);
-    // let homeTeamPlayers = {...this.state.homeTeam};
-    // console.log(awayTeamPlayers);
+    let awayTeamPlayers = {...this.state.awayTeam.players};
+    console.log(awayTeamPlayers);
+    let homeTeamPlayers = {...this.state.homeTeam.players};
+    console.log(awayTeamPlayers);
     // console.log(Object.keys(awayTeamPlayers));
+    for (let i = 0; i < 10; i++) {
+      if(awayTeamPlayers[i].id === id) {
+        awayTeamPlayers[i].active = true;
+    }
+  }
 
     // awayTeamPlayers.forEach((player) =>{
     //   if(player.id === id) {
@@ -442,7 +447,7 @@ class Game extends React.Component {
     //     player.active = true;
     //   }
     // });
-    // this.setState({awayTeam})
+    this.setState({awayTeamPlayers})
     // this.setState({homeTeamPlayers})
   }
 
