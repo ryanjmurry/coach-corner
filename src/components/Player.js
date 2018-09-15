@@ -17,8 +17,8 @@ const Player = (props) => {
   const { name, offense, defense, endurance, points, stamina, active, id} = props.player;
   const inTimeout = props.inTimeout;
 
-  const onSubPlayerIn = () => {
-    props.onSubPlayerIn(id);
+  const onSubPlayer = () => {
+    props.onSubPlayer(id);
   }
 
 
@@ -26,9 +26,9 @@ const Player = (props) => {
   let currentButton = null;
 
   if(inTimeout && active) {
-    currentButton = <Button size='mini'>Move To Bench</Button>
+    currentButton = <Button onClick={onSubPlayer} size='mini'>Move To Bench</Button>
   } else if (inTimeout && !active) {
-    currentButton = <Button onClick={onSubPlayerIn} size='mini'>Move To Active</Button>
+    currentButton = <Button onClick={onSubPlayer} size='mini'>Move To Active</Button>
   } else {
     currentButton = null;
   }
@@ -43,7 +43,8 @@ const Player = (props) => {
 
 Player.propTypes = {
   player: PropTypes.object.isRequired,
-  inTimeout: PropTypes.bool.isRequired
+  inTimeout: PropTypes.bool.isRequired,
+  onSubPlayer: PropTypes.func
 }
 
 export default Player;

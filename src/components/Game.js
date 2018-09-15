@@ -375,15 +375,17 @@ class Game extends React.Component {
       homeTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        players: this.createTeamPlayers(),
+        activeCount: 0
       },
       awayTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        players: this.createTeamPlayers(),
+        activeCount: 0
       }
     }
-    this.handleSubPlayerIn = this.handleSubPlayerIn.bind(this);
+    this.handleSubPlayer = this.handleSubPlayer.bind(this);
   }
 
   //creates random player name
@@ -418,37 +420,42 @@ class Game extends React.Component {
     return newTeamList;
   }
 
-  handleSubPlayerIn(id) {
-    console.log(id)
-    let awayTeamPlayers = {...this.state.awayTeam.players};
-    console.log(awayTeamPlayers);
-    let homeTeamPlayers = {...this.state.homeTeam.players};
-    console.log(awayTeamPlayers);
-    // console.log(Object.keys(awayTeamPlayers));
+  handleSubPlayer(id) {
+    let awayTeam = {...this.state.awayTeam};
+    let homeTeam = {...this.state.homeTeam};
+    let awayPlayerToSub = null;
+    let homePlayerToSub = null;
     for (let i = 0; i < 10; i++) {
-      if(awayTeamPlayers[i].id === id) {
-        awayTeamPlayers[i].active = true;
+      if (awayTeam.players[i].id === id) {
+        awayPlayerToSub = awayTeam.players[i]
+      }
+      if (homeTeam.players[i].id === id) {
+        homePlayerToSub = homeTeam.players[i]
+      }
     }
-  }
-
-    // awayTeamPlayers.forEach((player) =>{
-    //   if(player.id === id) {
-    //     console.log(player);
-    //     player.active = true;
-    //   }
-    // });
-
-    // for (var property1 in object1) {
-    //   string1 = string1 + object1[property1];
-    // }
-
-    // awayTeam.players.forEach((player) =>{
-    //   if(player.id === id) {
-    //     player.active = true;
-    //   }
-    // });
-    this.setState({awayTeamPlayers})
-    // this.setState({homeTeamPlayers})
+    if (awayPlayerToSub !== null) {
+      if (!awayPlayerToSub.active && awayTeam.activeCount < 5) {
+        awayPlayerToSub.active = true;
+        awayTeam.activeCount++;
+      } else if (!awayPlayerToSub.active && awayTeam.activeCount > 4) {
+        alert('too many active players, trying putting one on the bench first!')
+      } else {
+        awayPlayerToSub.active = false;
+        awayTeam.activeCount--;
+      }
+    } else if (homePlayerToSub !== null) {
+      if (!homePlayerToSub.active && homeTeam.activeCount < 5) {
+        homePlayerToSub.active = true;
+        homeTeam.activeCount++;
+      } else if (!homePlayerToSub.active && homeTeam.activeCount > 4) {
+        alert('too many active players, trying putting one on the bench first!')
+      } else {
+        homePlayerToSub.active = false;
+        homeTeam.activeCount--;
+      }
+    }
+    this.setState({awayTeam})
+    this.setState({homeTeam})
   }
 
   // code to change state
@@ -472,7 +479,7 @@ class Game extends React.Component {
     return (
       <div style={gameContainer}>
         <Scoreboard gameInfo={this.state.gameInfo} inTimeout={this.state.inTimeout}/>
-        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout} onSubPlayerIn={this.handleSubPlayerIn}/>
+        <PlayerFieldContainer homeTeam={this.state.homeTeam} awayTeam={this.state.awayTeam} inTimeout={this.state.inTimeout} onSubPlayer={this.handleSubPlayer}/>
         <BoxScore />
       </div>
     )
