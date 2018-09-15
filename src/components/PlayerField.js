@@ -30,8 +30,8 @@ const PlayerField = (props) => {
     <div style={playerFieldContainer}>
       PlayerField
       <CoachPanel />
-      <ActivePlayers players={activePlayers} inTimeout={props.inTimeout} />
-      <BenchPlayers players={benchPlayers} inTimeout={props.inTimeout} onSubPlayerIn={props.onSubPlayerIn}/>
+      <ActivePlayers players={activePlayers} inTimeout={props.inTimeout} onSubPlayer={props.onSubPlayer}/>
+      <BenchPlayers players={benchPlayers} inTimeout={props.inTimeout} onSubPlayer={props.onSubPlayer}/>
     </div>
   );
 }
@@ -39,7 +39,7 @@ const PlayerField = (props) => {
 PlayerField.propTypes = {
   players: PropTypes.array.isRequired,
   inTimeout: PropTypes.bool.isRequired,
-  onSubPlayerIn: PropTypes.func.isRequired
+  onSubPlayer: PropTypes.func.isRequired
 }
 
 export default PlayerField;
