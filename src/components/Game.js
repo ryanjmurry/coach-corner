@@ -375,12 +375,14 @@ class Game extends React.Component {
       homeTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        players: this.createTeamPlayers(),
+        activeCount: 0
       },
       awayTeam: {
         timeOutsRemaining: 2,
         strategy: "neutral",
-        players: this.createTeamPlayers()
+        players: this.createTeamPlayers(),
+        activeCount: 0
       }
     }
     this.handleSubPlayer = this.handleSubPlayer.bind(this);
@@ -419,24 +421,41 @@ class Game extends React.Component {
   }
 
   handleSubPlayer(id) {
-    console.log(id)
-    let awayTeamPlayers = {...this.state.awayTeam.players};
-    console.log(awayTeamPlayers);
-    let homeTeamPlayers = {...this.state.homeTeam.players};
-    console.log(awayTeamPlayers);
+    let awayTeam = {...this.state.awayTeam};
+    let homeTeam = {...this.state.homeTeam};
+    let awayPlayerToSub = null;
+    let homePlayerToSub = null;
     for (let i = 0; i < 10; i++) {
-      if(awayTeamPlayers[i].id === id) {
-        awayTeamPlayers[i].active = !awayTeamPlayers[i].active;
+      if (awayTeam.players[i].id === id) {
+        awayPlayerToSub = awayTeam.players[i]
+      }
+      if (homeTeam.players[i].id === id) {
+        homePlayerToSub = homeTeam.players[i]
+      }
     }
-  }
-
-    for (let i = 0; i < 10; i++) {
-      if(homeTeamPlayers[i].id === id) {
-        homeTeamPlayers[i].active = !homeTeamPlayers[i].active;
+    if (awayPlayerToSub !== null) {
+      if (!awayPlayerToSub.active && awayTeam.activeCount < 5) {
+        awayPlayerToSub.active = true;
+        awayTeam.activeCount++;
+      } else if (!awayPlayerToSub.active && awayTeam.activeCount > 4) {
+        alert('too many active players, trying putting one on the bench first!')
+      } else {
+        awayPlayerToSub.active = false;
+        awayTeam.activeCount--;
+      }
+    } else if (homePlayerToSub !== null) {
+      if (!homePlayerToSub.active && homeTeam.activeCount < 5) {
+        homePlayerToSub.active = true;
+        homeTeam.activeCount++;
+      } else if (!homePlayerToSub.active && homeTeam.activeCount > 4) {
+        alert('too many active players, trying putting one on the bench first!')
+      } else {
+        homePlayerToSub.active = false;
+        homeTeam.activeCount--;
+      }
     }
-  }
-    this.setState({awayTeamPlayers})
-    this.setState({homeTeamPlayers})
+    this.setState({awayTeam})
+    this.setState({homeTeam})
   }
 
   // code to change state
